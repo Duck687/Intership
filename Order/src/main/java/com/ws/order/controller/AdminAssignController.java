@@ -72,20 +72,35 @@ public class AdminAssignController {
               logger.info("Delete order: ", e);
             }
         }
-        @PutMapping("/{id}/addmaster/")
-        public void addMastertOrder(@PathVariable Long id, @RequestBody Long id2) {
-            MasterAssignments master = new MasterAssignments(id,id2);
+        @PutMapping("/{id2}/master/")
+        public void addMastertOrder(@PathVariable Long id2, @RequestBody Long id) {
+            MasterAssignments master = new MasterAssignments(id2,id);
             mastersAssignService.saveOrUpdateMasterAssignments(master);
         }
-        @PutMapping("/{id}/addadmin/")
-        public void addAdminOrder(@PathVariable Long id, @RequestBody Long id2) {
-            AdministratorAssignments admin = new AdministratorAssignments(id,id2);
+        @PutMapping("/{id2}/admin/")
+        public void addAdminOrder(@PathVariable Long id2, @RequestBody Long id) {
+            AdministratorAssignments admin = new AdministratorAssignments(id2,id);
             adminAssignService.saveOrUpdateAdminAssig(admin);
         }
-        @PutMapping("/{id}/addpart/")
-        public void addPartOrder(@PathVariable Long id, @RequestBody Long id2) {
-            PartsList part = new PartsList(id,id2);
+        @PutMapping("/{id2}/part/")
+        public void addPartOrder(@PathVariable Long id2, @RequestBody Long id) {
+            PartsList part = new PartsList(id2,id);
             partsListService.saveOrUpdatePartsList(part);
+        }
+        @DeleteMapping("/{id}/master/{id2}")
+        public void deleteMasterOrder(@PathVariable Long id,@PathVariable Long id2)
+        {
+            mastersAssignService.deleteMasterAssignments(id2);
+        }
+        @DeleteMapping("/{id}/admin/{id2}")
+        public void deleteAdminOrder(@PathVariable Long id,@PathVariable Long id2)
+        {
+            adminAssignService.deleteAdminAssig(id2);
+        }
+        @DeleteMapping("/{id}/part/{id2}")
+        public void deletePartOrder(@PathVariable Long id,@PathVariable Long id2)
+        {
+            partsListService.deletePartsList(id2);
         }
 
 }
