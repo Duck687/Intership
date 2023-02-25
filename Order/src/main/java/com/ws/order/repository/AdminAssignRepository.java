@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AdminAssigRepository extends CrudRepository<AdministratorAssignments,Long> {
+public interface AdminAssignRepository extends CrudRepository<AdministratorAssignments,Long> {
 }

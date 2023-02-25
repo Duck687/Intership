@@ -26,9 +26,8 @@ public class AccountController {
         Accounts account = accountService.getAccountById(id);
         if (account != null) {
             return new ResponseEntity<>(account, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("")

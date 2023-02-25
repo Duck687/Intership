@@ -4,8 +4,8 @@ import com.ws.order.models.AdministratorAssignments;
 import com.ws.order.models.MasterAssignments;
 import com.ws.order.models.Orders;
 import com.ws.order.models.PartsList;
-import com.ws.order.service.AdminAssigService;
-import com.ws.order.service.MastersAssigService;
+import com.ws.order.service.AdminAssignService;
+import com.ws.order.service.MastersAssignService;
 import com.ws.order.service.OrderService;
 import com.ws.order.service.PartsListService;
 import org.slf4j.Logger;
@@ -19,14 +19,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/Order")
-public class AdminAssigController {
+public class AdminAssignController {
 
         @Autowired
         private OrderService orderService;
-        private AdminAssigService adminAssigService;
-        private MastersAssigService mastersAssigService;
+        private AdminAssignService adminAssignService;
+        private MastersAssignService mastersAssignService;
         private PartsListService partsListService;
-         private static final Logger logger = LoggerFactory.getLogger(AdminAssigController.class);
+         private static final Logger logger = LoggerFactory.getLogger(AdminAssignController.class);
 
         @GetMapping("")
         public List<Orders> getAllOrder() {
@@ -38,9 +38,8 @@ public class AdminAssigController {
             Orders account = orderService.getOrderById(id);
             if (account != null) {
                 return new ResponseEntity<>(account, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         @PostMapping("")
@@ -59,13 +58,13 @@ public class AdminAssigController {
             orderService.deleteOrder(id);
             try
             {
-                while(mastersAssigService.getMasterAssignmentsById(id)!= null)
+                while(mastersAssignService.getMasterAssignmentsById(id)!= null)
                 {
-                    mastersAssigService.deleteMasterAssignments(id);
+                    mastersAssignService.deleteMasterAssignments(id);
                 }
-                while(adminAssigService.getAdminiAssigById(id)!= null)
+                while(adminAssignService.getAdminAssigById(id)!= null)
                 {
-                    adminAssigService.deleteAdminAssig(id);
+                    adminAssignService.deleteAdminAssig(id);
                 }
             }
             catch(Exception e)
@@ -76,12 +75,12 @@ public class AdminAssigController {
         @PutMapping("/{id}/addmaster/")
         public void addMastertOrder(@PathVariable Long id, @RequestBody Long id2) {
             MasterAssignments master = new MasterAssignments(id,id2);
-            mastersAssigService.saveOrUpdateMasterAssignments(master);
+            mastersAssignService.saveOrUpdateMasterAssignments(master);
         }
         @PutMapping("/{id}/addadmin/")
         public void addAdminOrder(@PathVariable Long id, @RequestBody Long id2) {
             AdministratorAssignments admin = new AdministratorAssignments(id,id2);
-            adminAssigService.saveOrUpdateAdminAssig(admin);
+            adminAssignService.saveOrUpdateAdminAssig(admin);
         }
         @PutMapping("/{id}/addpart/")
         public void addPartOrder(@PathVariable Long id, @RequestBody Long id2) {

@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MasterAssigRepository extends CrudRepository<MasterAssignments,Long> {
+public interface MasterAssignRepository extends CrudRepository<MasterAssignments,Long> {
 }

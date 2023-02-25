@@ -1,29 +1,29 @@
 package com.ws.order.service;
 
 import com.ws.order.models.AdministratorAssignments;
-import com.ws.order.repository.AdminAssigRepository;
+import com.ws.order.repository.AdminAssignRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class AdminAssigService {
+public class AdminAssignService {
     @Autowired
-    private AdminAssigRepository adminAssigRepository;
+    private AdminAssignRepository adminAssignRepository;
     public List<AdministratorAssignments> getAllAdminAssig() {
-        return (List<AdministratorAssignments>) adminAssigRepository.findAll();
+        return (List<AdministratorAssignments>) adminAssignRepository.findAll();
     }
 
-    public AdministratorAssignments getAdminiAssigById(Long id) {
-        return adminAssigRepository.findById(id).get();
+    public AdministratorAssignments getAdminAssigById(Long id) {
+        return adminAssignRepository.findById(id).get();
     }
 
     public void saveOrUpdateAdminAssig(AdministratorAssignments account) {
-        adminAssigRepository.save(account);
+        adminAssignRepository.save(account);
     }
 
     public void deleteAdminAssig(Long id) {
-        adminAssigRepository.deleteById(id);
+        adminAssignRepository.deleteById(id);
     }
 }
