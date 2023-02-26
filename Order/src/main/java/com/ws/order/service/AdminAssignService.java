@@ -11,19 +11,19 @@ import java.util.List;
 public class AdminAssignService {
     @Autowired
     private AdminAssignRepository adminAssignRepository;
-    public List<AdministratorAssignments> getAllAdminAssig() {
+    public List<AdministratorAssignments> getAllAdminAssign() {
         return (List<AdministratorAssignments>) adminAssignRepository.findAll();
     }
 
-    public AdministratorAssignments getAdminAssigById(Long id) {
+    public AdministratorAssignments getAdminAssignById(Long id) {
         return adminAssignRepository.findById(id).get();
     }
 
-    public void saveOrUpdateAdminAssig(AdministratorAssignments account) {
+    public void saveOrUpdateAdminAssign(AdministratorAssignments account) {
         adminAssignRepository.save(account);
     }
 
-    public void deleteAdminAssig(Long id) {
+    public void deleteAdminAssign(Long id) {
         adminAssignRepository.deleteById(id);
     }
 }

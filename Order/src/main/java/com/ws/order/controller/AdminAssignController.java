@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/Order")
+@RequestMapping("/api/order")
 public class AdminAssignController {
 
         @Autowired
@@ -62,9 +62,9 @@ public class AdminAssignController {
                 {
                     mastersAssignService.deleteMasterAssignments(id);
                 }
-                while(adminAssignService.getAdminAssigById(id)!= null)
+                while(adminAssignService.getAdminAssignById(id)!= null)
                 {
-                    adminAssignService.deleteAdminAssig(id);
+                    adminAssignService.deleteAdminAssign(id);
                 }
             }
             catch(Exception e)
@@ -72,35 +72,35 @@ public class AdminAssignController {
               logger.info("Delete order: ", e);
             }
         }
-        @PutMapping("/{id2}/master/")
-        public void addMastertOrder(@PathVariable Long id2, @RequestBody Long id) {
-            MasterAssignments master = new MasterAssignments(id2,id);
+        @PutMapping("/{orderId}/masters/")
+        public void addMastertOrder(@PathVariable Long orderId, @RequestBody Long id) {
+            MasterAssignments master = new MasterAssignments(orderId,id);
             mastersAssignService.saveOrUpdateMasterAssignments(master);
         }
-        @PutMapping("/{id2}/admin/")
-        public void addAdminOrder(@PathVariable Long id2, @RequestBody Long id) {
-            AdministratorAssignments admin = new AdministratorAssignments(id2,id);
-            adminAssignService.saveOrUpdateAdminAssig(admin);
+        @PutMapping("/{orderId}/admins/")
+        public void addAdminOrder(@PathVariable Long orderId, @RequestBody Long id) {
+            AdministratorAssignments admin = new AdministratorAssignments(orderId,id);
+            adminAssignService.saveOrUpdateAdminAssign(admin);
         }
-        @PutMapping("/{id2}/part/")
-        public void addPartOrder(@PathVariable Long id2, @RequestBody Long id) {
-            PartsList part = new PartsList(id2,id);
+        @PutMapping("/{orderId}/parts/")
+        public void addPartOrder(@PathVariable Long orderId, @RequestBody Long id) {
+            PartsList part = new PartsList(orderId,id);
             partsListService.saveOrUpdatePartsList(part);
         }
-        @DeleteMapping("/{id}/master/{id2}")
-        public void deleteMasterOrder(@PathVariable Long id,@PathVariable Long id2)
+        @DeleteMapping("/{orderId}/masters/{id}")
+        public void deleteMasterOrder(@PathVariable Long orderId,@PathVariable Long id)
         {
-            mastersAssignService.deleteMasterAssignments(id2);
+            mastersAssignService.deleteMasterAssignments(id);
         }
-        @DeleteMapping("/{id}/admin/{id2}")
-        public void deleteAdminOrder(@PathVariable Long id,@PathVariable Long id2)
+        @DeleteMapping("/{orderId}/admins/{id}")
+        public void deleteAdminOrder(@PathVariable Long orderId,@PathVariable Long id)
         {
-            adminAssignService.deleteAdminAssig(id2);
+            adminAssignService.deleteAdminAssign(id);
         }
-        @DeleteMapping("/{id}/part/{id2}")
-        public void deletePartOrder(@PathVariable Long id,@PathVariable Long id2)
+        @DeleteMapping("/{orderId}/parts/{id}")
+        public void deletePartOrder(@PathVariable Long orderId,@PathVariable Long id)
         {
-            partsListService.deletePartsList(id2);
+            partsListService.deletePartsList(id);
         }
 
 }
